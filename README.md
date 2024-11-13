@@ -11,7 +11,7 @@ The path to project and image folders must be provided inside the script (line 2
   <li>The size of the images.</li>
   <li>The labels as provided by xml-files.</li> 
 </ul>
-<p>In case everything is okay, the script shows basic statistics:</p>
+<p>In case everything is okay, the script shows the following basic output:</p>
 <ul style="list-style-type:square;">
   <li>The count of different image shapes.</li>
   <li>The number of images per label.</li>

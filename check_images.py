@@ -1,12 +1,15 @@
 """ check_images.py
-    This scripts checks labeled images in preparation 
-    in preparation for the use in tensor flow training.
-    Checking the following topics:
-    - For each image file (*.jpg, *.jpeg or *.png) there
-      needs to be exactly one label file (*.xml)
-    - The size of the images
-    - The labels and the number of images per label
-    In case everything is okay, the script creates a zip file including all images and labels.
+
+This scripts checks labeled images in preparation 
+for the use in tensor flow training. It checks the following topics:
+  - For each image file (*.jpg, *.jpeg or *.png) there needs to be exactly one label file (*.xml)
+  - The size of the images
+  - The labels 
+In case everything is okay, the shows basic statistics:
+  - the count of different image shapes
+  - the number of images per label
+  - a Python label-statement as needed to create the labels for training
+The script creates a zip file including all images and labels.
 
 SLW Oct-2024
 """
@@ -119,10 +122,16 @@ for idx, cnt in labels.items():
     format_str = "- {:" + str(label_len + 1) + "s}:{:4d}"
     print(format_str.format(idx, cnt))
 
-"""
+print()
+print("Label statement:")
+s = "label = ['"
+for l in labels.index:
+    s += str(l) + "', '"
+s = s[:-3] + ']'
+print(s)
+
 print()
 print("Creating zip file:", os.path.join(project_dir, zip_file) + ".zip")
 shutil.make_archive(os.path.join(project_dir, zip_file), 'zip', image_path)
 print("Done!")
 print()
-"""

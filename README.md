@@ -1,4 +1,4 @@
-This is a loose collection if Python scripts that are helpful for tensorflow image detection.
+This is a loose collection of helpful scripts to support tensorflow image detection.
 SLW - Oct 2024
 
 check_images.py: This scripts checks labeled images in preparation 

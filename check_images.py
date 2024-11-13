@@ -121,16 +121,16 @@ label_len = labels.index.str.len().max()
 for idx, cnt in labels.items():
     format_str = "- {:" + str(label_len + 1) + "s}:{:4d}"
     print(format_str.format(idx, cnt))
-
 print()
+
 print("Label statement:")
 s = "label = ['"
 for l in labels.index:
     s += str(l) + "', '"
 s = s[:-3] + ']'
 print(s)
-
 print()
+
 print("Creating zip file:", os.path.join(project_dir, zip_file) + ".zip")
 shutil.make_archive(os.path.join(project_dir, zip_file), 'zip', image_path)
 print("Done!")

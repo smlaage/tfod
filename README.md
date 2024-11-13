@@ -2,7 +2,9 @@
 SLW - Oct 2024
 
 <h2><b>check_images.py</b></h2> 
-<p>This scripts checks labeled images in preparation for tensorflow training.</p> 
+<p>This scripts checks labeled images in preparation for tensorflow training. 
+  All images and label-files must be in a single folder. Ususally the images folder is a subfolder to the project folder.
+The path to project and image folders must be provided inside the script (line 24 and 25).</p> 
 <p>It checks the following topics:</p>
 <ul style="list-style-type:square;">
   <li>For each image file (*.jpg, *.jpeg or *.png) there needs to be exactly one label file (*.xml).</li>

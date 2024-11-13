@@ -1,7 +1,7 @@
 This is a loose collection of helpful scripts to support tensorflow image detection.
 SLW - Oct 2024
 
-check_images.py: This scripts checks labeled images in preparation 
+<b>check_images.py</b>: This scripts checks labeled images in preparation 
 for the use in tensor flow training. It checks the following topics:
   - For each image file (*.jpg, *.jpeg or *.png) there needs to be exactly one label file (*.xml)
   - The size of the images

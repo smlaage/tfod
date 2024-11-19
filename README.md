@@ -20,7 +20,9 @@ The path to project and image folders must be provided inside the script (line 2
 <p>In case of no error, the script creates a zip file including all images and labels.</p>
 
 <h2><b>analyze_images.py</b></h2> 
-<p>This scripts loads images from a directory and applies image detection to one image at a time. Accepted files types are *.jpg, *.jpeg and *.png. 
+<p>This scripts loads images from a directory and applies image detection to one image at a time. 
+  The detection is based on a trained tensorflow light CNN, which needs to be provided via a model dir.
+  Accepted files types are *.jpg, *.jpeg and *.png. 
   Objects found are marked with binding boxes and labels. You can specify a detection threshold (line 43). 
   The keyboard keys a (fast rewind), s (rewind), d (forward), f (fast forward) provide very simple navigation through the image folder. </p>
   <p>The script requiers the class 'detetcor.py'.</p>

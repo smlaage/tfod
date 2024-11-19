@@ -21,7 +21,7 @@ The path to project and image folders must be provided inside the script (line 2
 
 <h2><b>analyze_images.py</b></h2> 
 <p>This scripts loads images from a directory and applies image detection to one image at a time. 
-  The detection is based on a trained tensorflow light CNN, which needs to be provided via a model dir.
+  The detection is based on a trained tensorflow-lite CNN model, which needs to be provided via a model folder.
   Accepted files types are *.jpg, *.jpeg and *.png. 
   Objects found are marked with binding boxes and labels. You can specify a detection threshold (line 43). 
   The keyboard keys a (fast rewind), s (rewind), d (forward), f (fast forward) provide very simple navigation through the image folder. </p>
@@ -29,5 +29,5 @@ The path to project and image folders must be provided inside the script (line 2
 <p>You need to provide the following folders:</p>
 <ul style="list-style-type:square;">
   <li>Path to image folder as specified in lines 36 to 38.</li>
-  <li>Path to the model folder  as specified in ines 39 and 40. The model folder needs to comprise the trained tensorflow lite weights (detect.tflite) and the labels (label.txt).</li>
+  <li>Path to the model folder as specified in ines 39 and 40. The model folder needs to comprise the trained tensorflow lite weights (detect.tflite) and the labels (label.txt).</li>
 </ul>

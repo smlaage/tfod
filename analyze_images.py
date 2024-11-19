@@ -33,15 +33,15 @@ print("- Press <esc> to exit.")
 print()
 
 # Directories
-project_dir = "microorganismn"
-model_dir = "model"
+project_dir = "."
 image_dir = "images"
-model_path = os.path.join(project_dir, model_dir)
 image_path = os.path.join(project_dir, image_dir)
+model_dir = "model"
+model_path = os.path.join(project_dir, model_dir)
 
 # Constants
-image_height, image_width = 768, 1024
 threshold = 0.4
+image_height, image_width = 768, 1024
 image_step = 10
 
 # Detector

@@ -1,5 +1,5 @@
 <t>This is a loose collection of helpful Python scripts to support tensorflow image detection.</t>
-SLW - Oct 2024
+<p>SLW - Oct 2024</p>
 
 <h2><b>check_images.py</b></h2> 
 <p>This scripts checks labeled images in preparation for tensorflow training. 

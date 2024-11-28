@@ -124,7 +124,7 @@ for idx, cnt in labels.items():
 print()
 
 print("Label statement:")
-s = "label = ['"
+s = "labels = ['"
 for l in labels.index:
     s += str(l) + "', '"
 s = s[:-3] + ']'

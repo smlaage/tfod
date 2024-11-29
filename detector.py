@@ -1,6 +1,7 @@
 """ detector.py
 
-Class to runtensorflow object detetcion from a trained network.
+Class to run tensorflow object detection applying a trained model.
+The model data must be provided in a directory <model> that comprises the files "detect.tflite" and "labelmap.txt". 
 Based on Google tensorflow examples and tutorials with minor modifications
 
 Dependencies: OpenCV, tensorflow lite

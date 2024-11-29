@@ -1,5 +1,15 @@
 <t>This is a loose collection of helpful Python scripts to support tensorflow object detection.</t>
 <p>The recommended folder structure is shown in "folder_structrue.png".</p>
+<p>Dependecies:</p>
+<ul style="list-style-type:square;">
+  <li>Tensorflow lite (this is incldued in the full tensorflow package)</li>
+  <li>cv2 (OpenCV)</li>
+  <li>pandas</li>
+  <li>numpy</li>
+  <li>shutil</li>
+  <li>sys</li>
+  <li>os</li>
+</ul>
 <p>SLW - Oct 2024</p>
 
 <h2><b>check_images.py</b></h2> 
@@ -35,9 +45,4 @@ The path to project and image folders must be provided inside the script (line 2
 
 <h2><b>detector.py</b></h2> 
 <p>Python class to run the tflite detector.</p>
-<p>Dependecies:</p>
-<ul style="list-style-type:square;">
-  <li>Tensorflow lite (this is incldued in the full tensorflow package)</li>
-  <li>OpenCV</li>
-  <li>Numpy</li>
-</ul>
+

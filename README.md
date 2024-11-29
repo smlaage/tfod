@@ -1,4 +1,5 @@
-<t>This is a loose collection of helpful Python scripts to support tensorflow image detection.</t>
+<t>This is a loose collection of helpful Python scripts to support tensorflow object detection.</t>
+<p>The recommended folder structure is shown in folder_structrue.png.</p>
 <p>SLW - Oct 2024</p>
 
 <h2><b>check_images.py</b></h2> 

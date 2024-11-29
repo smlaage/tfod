@@ -2,7 +2,8 @@
 <p>The recommended folder structure is shown in "folder_structrue.png".</p>
 <p>Dependecies:</p>
 <ul style="list-style-type:square;">
-  <li>Tensorflow lite (this is incldued in the full tensorflow package)</li>
+  <li>Windows: tensorflow.lite (this is incldued in the full tensorflow package)</li>
+  <li>Raspberry Pi: tflite_runtime.interpreter</li>
   <li>cv2 (OpenCV)</li>
   <li>pandas</li>
   <li>numpy</li>

@@ -31,3 +31,12 @@ The path to project and image folders must be provided inside the script (line 2
   <li>Path to image folder as specified in lines 36 to 38.</li>
   <li>Path to the model folder as specified in ines 39 and 40. The model folder needs to comprise the trained tensorflow lite weights (detect.tflite) and the labels (label.txt).</li>
 </ul>
+
+<h2><b>detector.py</b></h2> 
+<p>Python class to run the tflite detector.</p>
+<p>Dependecies:</p>
+<ul style="list-style-type:square;">
+  <li>Tensorflow lite (this is incldued in the full tensorflow package)</li>
+  <li>OpenCV</li>
+  <li>Numpy</li>
+</ul>

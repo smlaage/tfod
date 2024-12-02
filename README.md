@@ -33,8 +33,8 @@ The path to project and image folders must be provided inside the script (line 2
 
 <h2><b>resize_images.py</b></h2> 
 <p>Experience shows that high-resolution images are unwieldy for training CNNs. The system will soon run out of memeroy. 
-  This scripts takes all images from one folder (<original>), resizes them to 1024 x 768 pixel,
-and transfers the results to another folder (<images>). If an imgae is already smaller than 1024 x 768, the script will just copy it without change. </p> 
+  This scripts takes all images from one folder (e.g. 'original'), resizes them to 1024 x 768 pixel,
+and transfers the results to another folder (e.g. 'images'). If an imgae is already smaller than 1024 x 768, the script will just copy it without change. </p> 
 
 <h2><b>analyze_images.py</b></h2> 
 <p>This script loads images from a directory and applies image detection to one image at a time. 

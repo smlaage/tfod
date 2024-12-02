@@ -31,6 +31,11 @@ The path to project and image folders must be provided inside the script (line 2
 </ul>
 <p>In case of no error, the script creates a zip file including all images and labels.</p>
 
+<h2><b>resize_images.py</b></h2> 
+<p>Experience shows that high-resolution images are unwieldy for training CNNs. The system will soon run out of memeroy. 
+  This scripts takes all images from one folder (<original>), resizes them to 1024 x 768 pixel,
+and transfers the results to another folder (<images>). If an imgae is already smaller than 1024 x 768, the script will just copy it without change. </p> 
+
 <h2><b>analyze_images.py</b></h2> 
 <p>This script loads images from a directory and applies image detection to one image at a time. 
   The detection is based on a trained tensorflow-lite CNN model, which needs to be provided via a model folder.

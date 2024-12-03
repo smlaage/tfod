@@ -94,12 +94,12 @@ while True:
             pnt = files_cnt + pnt
     elif chr(key) in ('d', 'D'):
         pnt += 1
-        if key >= files_cnt:
-            key = files_cnt - 1
+        if pnt >= files_cnt:
+            pnt = files_cnt - 1
     elif chr(key) in ('f', 'F'):
         pnt += image_step
-        if key >= files_cnt:
-            key = files_cnt - 1
+        if pnt >= files_cnt:
+            pnt = files_cnt - 1
     elif key == 27:
         break
     else:

@@ -5,16 +5,16 @@ SLW Oct-2024
 
 import os
 import cv2
-import msvcrt
 import detector
 
 threshold = 0.3
 
 def show_box(frame, box, label, score):
-    ymin = int(max(1,(box[0] * image_height)))
-    xmin = int(max(1,(box[1] * image_width)))
-    ymax = int(min(image_height,(box[2] * image_height)))
-    xmax = int(min(image_width,(box[3] * image_width)))  
+    height, width = img.shape[:2]
+    ymin = int(max(1,(box[0] * height)))
+    xmin = int(max(1,(box[1] * width)))
+    ymax = int(min(image_height,(box[2] * height)))
+    xmax = int(min(image_width,(box[3] * width)))  
     cv2.rectangle(frame, (xmin,ymin), (xmax,ymax), (10, 255, 0), 2)
     label_str = "{:s}: {:d}%".format(label, int(score * 100))
     label_size, base_line = cv2.getTextSize(label_str, cv2.FONT_HERSHEY_SIMPLEX, 0.7, 2) # Get font size
@@ -33,7 +33,7 @@ print("- Press <esc> to exit.")
 print()
 
 # Directories
-project_dir = "."
+project_dir = "sign-language"
 image_dir = "images"
 image_path = os.path.join(project_dir, image_dir)
 model_dir = "model"
@@ -51,7 +51,7 @@ dct = detector.Detector(model_path)
 # Image directory
 print("Reading image directory ...")
 files = os.listdir(image_path)
-image_files = [f for f in files if f[-4:] in ('.jpg', '.jpeg', '.png')]
+image_files = [f for f in files if f[-4:] in ('.jpg', '.png')]
 files_cnt = len(image_files)
 pnt = 0
 print(files_cnt, "images found")
@@ -66,7 +66,7 @@ while True:
     if width > image_width:
         img = cv2.resize(img, (image_width, height * image_width // width))
         print("   - image resized")
-    height, width = img.shape[:2]
+        height, width = img.shape[:2]
     if height > image_height:
         img = cv2.resize(img, (width * image_height // height, image_height))
         print("   - image resized")

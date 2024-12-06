@@ -193,7 +193,7 @@ else:
     print(s)
     print()
 
-    response = input("Do you want to create a zip file? (Y/N)")
+    response = input("Do you want to create a zip file? (Y/N): ")
     if response.strip()[0] in ('y', 'Y'):
       print("Creating zip file:", os.path.join(project_dir, zip_file) + ".zip")
       shutil.make_archive(os.path.join(project_dir, zip_file), 'zip', image_path)

@@ -82,7 +82,7 @@ while True:
             break
     # Show the image and wait for the keyboard
     cv2.imshow("", img)
-    key = cv2.waitKey(0)
+    key = cv2.waitKey(0) & 0xff
     # Analyze keys pressed 
     if chr(key) in ('a', 'A'):
         pnt -= image_step;

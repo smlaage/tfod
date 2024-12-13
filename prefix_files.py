@@ -8,12 +8,12 @@ SLW 12-2024
 import os
 
 # Directories
-project_dir = "things"
+project_dir = "."
 image_dir = "images"
 image_path = os.path.join(project_dir, image_dir) 
 
 # Prefix
-prefix = "new"
+prefix = "my_class"
 prefix_len = len(prefix)
 
 print("Renaming files in '" + image_path + "'")

@@ -9,7 +9,7 @@ import os
 
 # Directories
 project_dir = "."
-image_dir = "images"
+image_dir = "my_images"
 image_path = os.path.join(project_dir, image_dir) 
 
 # Prefix

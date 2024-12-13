@@ -1,4 +1,13 @@
-<t>This is a loose collection of helpful Python scripts to support tensorflow object detection.</t>
+<h2><b>Overview</b></h2> 
+<p>This is a loose collection of helpful Python scripts to support tensorflow object detection.
+  It includes the following scripts:</p>
+<ul style="list-style-type:square;">
+  <li>check_images.py - prepares and checks images and label files prior to the model training</li>
+  <li>resize_images.py - resizes images to the prefered size (e.g.1024x768) prior to model training</li>
+  <li>analyze_images.py - runs the tflite detector on all images in a given directory and shows the objects found</li>
+  <li>detector.py - this is a python class providing easy access to the tensorflow lite detector</li>
+  <li>prefix_files.py - renames all files in an image with a given prefix (usually the name of the class of an image)</li>
+</ul>
 <p>The recommended folder structure is shown in "folder_structrue.png".</p>
 <p>Dependecies:</p>
 <ul style="list-style-type:square;">

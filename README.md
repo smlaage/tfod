@@ -2,11 +2,11 @@
 <p>This is a loose collection of helpful Python scripts to support tensorflow object detection.
   It includes the following scripts:</p>
 <ul style="list-style-type:square;">
-  <li>check_images.py - prepares and checks images and label files prior to the model training</li>
+  <li>check_images.py - prepares and checks image and label files prior to the model training</li>
   <li>resize_images.py - resizes images to the prefered size (e.g.1024x768) prior to model training</li>
+  <li>prefix_files.py - renames all files in an image with a given prefix (usually the name of the class of an image)</li>
   <li>analyze_images.py - runs the tflite detector on all images in a given directory and shows the objects found</li>
   <li>detector.py - this is a python class providing easy access to the tensorflow lite detector</li>
-  <li>prefix_files.py - renames all files in an image with a given prefix (usually the name of the class of an image)</li>
 </ul>
 <p>The recommended folder structure is shown in "folder_structrue.png".</p>
 <p>Dependecies:</p>
@@ -45,6 +45,13 @@ The path to project and image folders must be provided inside the script (line 2
   This scripts takes all images from one folder (e.g. 'original'), resizes them to 1024 x 768 pixel,
 and transfers the results to another folder (e.g. 'images'). If an imgae is already smaller than 1024 x 768, the script will just copy it without change. </p> 
 
+<h2><b>prefix_files.py</b></h2> 
+<p>This is a pretty simple script that renames all files in a given folder with a prefix. 
+  It has proven useful to specify the class name of an image in the file name. This script will help with this.
+  The directory name and the desired prefix must be specified in the script.
+  The script will not rename files that already have a prefix.
+  </p>
+
 <h2><b>analyze_images.py</b></h2> 
 <p>This script loads images from a directory and applies image detection to one image at a time. 
   The detection is based on a trained tensorflow-lite CNN model, which needs to be provided via a model folder.
@@ -60,10 +67,3 @@ and transfers the results to another folder (e.g. 'images'). If an imgae is alre
 
 <h2><b>detector.py</b></h2> 
 <p>Python class to run the tflite detector.</p>
-
-<h2><b>prefix_files.py</b></h2> 
-<p>This is a pretty simple script that renames all files in a given folder with a prefix. 
-  It has proven useful to specify the class name of an image in the file name. This script will help with this.
-  The directory name and the desired prefix must be specified in the script.
-  The script will not rename files that already have a prefix.
-  </p>

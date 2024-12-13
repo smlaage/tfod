@@ -52,3 +52,9 @@ and transfers the results to another folder (e.g. 'images'). If an imgae is alre
 <h2><b>detector.py</b></h2> 
 <p>Python class to run the tflite detector.</p>
 
+<h2><b>prefix_files.py</b></h2> 
+<p>This is a pretty simple script that renames all files in a given folder with a prefix. 
+  It has proven useful to specify the class name of an image in the file name. This script will help with this.
+  The directory name and the desired prefix must be specified in the script.
+  The script will not rename files that already have a prefix.
+  </p>

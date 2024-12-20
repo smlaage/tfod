@@ -14,11 +14,20 @@ The script creates a zip file including all images and labels.
 SLW Oct-2024
 """
 
+# Set files and paths ===================
+project_dir = "."
+image_dir = "images"
+zip_file = "images"
+# =======================================
+
+# Import libraries 
 import sys
 import os
 import cv2
 import pandas as pd
 import shutil
+
+# Functions =======================================================================
 
 def replace_blanks(image_path):
     """ replace blanks """
@@ -54,10 +63,7 @@ def analyze_xml(files):
 
 #= main program starts here ===================================================
 
-# Set files and paths
-project_dir = "sign-language"
-image_dir = "images"
-zip_file = "sign-language_images"
+# Set paths
 image_path = os.path.join(project_dir, image_dir)
 file_lst = os.listdir(image_path)
 

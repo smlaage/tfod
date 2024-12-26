@@ -33,14 +33,14 @@ print("- Press <esc> to exit.")
 print()
 
 # Directories
-project_dir = "sign-language"
+project_dir = "."
 image_dir = "images"
 image_path = os.path.join(project_dir, image_dir)
 model_dir = "model"
 model_path = os.path.join(project_dir, model_dir)
 
 # Constants
-threshold = 0.4
+threshold = 0.5
 image_height, image_width = 768, 1024
 image_step = 10
 

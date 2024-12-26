@@ -10,10 +10,10 @@
   <li>evaluator.py - this is a python class to evaluate the performance of a TensorFlow object detection algorithm.</li>
 </ul>
 <p>The recommended folder structure is shown in "folder_structrue.png".</p>
-<p>Dependecies:</p>
+<p>Dependencies:</p>
 <ul style="list-style-type:square;">
-  <li>Windows: tensorflow.lite (this is incldued in the full tensorflow package)</li>
-  <li>Raspberry Pi: tflite_runtime.interpreter</li>
+  <li>Running under Windows: tensorflow.lite (this is incldued in the full tensorflow package)</li>
+  <li>Or running on a Raspberry Pi: tflite_runtime.interpreter</li>
   <li>cv2 (OpenCV)</li>
   <li>pandas</li>
   <li>numpy</li>

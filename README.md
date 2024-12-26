@@ -7,6 +7,7 @@
   <li>prefix_files.py - renames all files in an image with a given prefix (usually the name of the class of an image)</li>
   <li>analyze_images.py - runs the tflite detector on all images in a given directory and shows the objects found</li>
   <li>detector.py - this is a python class providing easy access to the tensorflow lite detector</li>
+  <li>evaluator.py - this is a python class to evaluate the performance of a TensorFlow object detection algorithm.</li>
 </ul>
 <p>The recommended folder structure is shown in "folder_structrue.png".</p>
 <p>Dependecies:</p>
@@ -67,3 +68,18 @@ and transfers the results to another folder (e.g. 'images'). If an imgae is alre
 
 <h2><b>detector.py</b></h2> 
 <p>Python class to run the tflite detector.</p>
+
+<h2><b>evaluator.py</b></h2> 
+<p>Python class to evaluate the performance of a TensorFlow object detection algorithm.</p>
+<p>This class is intended for evaluating the performance of a TensorFLow object detection algorithm.
+It compares the predicted objects (= estimated objects) with the labelled objects (= true objects). 
+It calculates the intersection area of predicted and labelled objects as a fraction of the estimated area.
+A match is determined if the area of an estimated object overlaps the area of the true object by at least 50%.</p>
+<p>The most important method of this class is evaluate_img().
+This method requires an image file (jpg or png) and a labelling annotation (XML).
+It also needs a Tensorflow object detector, which is used to generate the predicted objects.</p>
+<p>The method returns two lists:</p>
+<ul style="list-style-type:square;">
+<li>List (1) contains the true objects and the matches with the predicted objects.</li>
+<li>List (2) contains the estimated objects with prediction scores and matches with the true objects.</li>
+

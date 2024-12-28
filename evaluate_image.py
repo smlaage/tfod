@@ -34,8 +34,6 @@ SLW Dec-2024
 """
 
 import os
-import cv2
-import pandas as pd
 import evaluator
 
 # Set files and paths
@@ -52,7 +50,7 @@ model_path = os.path.join(project_dir, model_dir)
 evl = evaluator.Evaluator(model_path)
 
 # Evaluate image
-true_lst, est_lst = evl.evaluate_img(image_name, image_path, verbose=False, show_img=True)
+true_lst, est_lst, _ = evl.evaluate_img(image_name, image_path, verbose=False, show_img=True)
 
 # Show results
 print("True objects:")

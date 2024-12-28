@@ -96,6 +96,7 @@ specified by the annotations) to the estimated objects (as found by the object d
 </ul>
 <p>The visualisation shows the true and estimated objects with coloured rectangles.</p>
 <ul style="list-style-type:square;">
+  <li>green = true object with matching estimated object</li>
   <li>yellow = true object without matching estimated object</li>
   <li>blue = estimated object with matching true object</li>
   <li>red = estimated object without matching true object</li>

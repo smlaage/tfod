@@ -104,7 +104,7 @@ specified by the annotations) to the estimated objects (as found by the object d
   <li>red = estimated object without matching true object</li>
 </ul>
 <p align="center">
-  <img src="evaluate_example_paramecium.png" title="Visualization with width=500 'evaluate_image.py'">
+  <img src="evaluate_example_paramecium.png" width="500" title="Visualization with 'evaluate_image.py'">
 </p>
   
 <h2><b>detector.py</b></h2> 

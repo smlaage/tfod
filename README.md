@@ -60,7 +60,7 @@ and transfers the results to another folder (e.g. 'images'). If an imgae is alre
   Accepted image files types are *.jpg, *.jpeg and *.png. 
   Objects found are marked with binding boxes and labels. You can specify a detection threshold (line 43). 
   The keyboard keys a (fast rewind), s (rewind), d (forward), f (fast forward) provide very simple navigation through the image folder. </p>
-  <p>The script requiers the class 'detector.py'.</p>
+  <p>The script requiers the class 'detector.py' which is available below.</p>
 <p>You need to provide the following folders:</p>
 <ul style="list-style-type:square;">
   <li>Path to image folder as specified in lines 36 to 38.</li>
@@ -70,6 +70,7 @@ and transfers the results to another folder (e.g. 'images'). If an imgae is alre
 <h2><b>evaluate_image.py</b></h2> 
 <p>This scripts evaluates the prediction for a single image. It compares the true objects (as
 specified by the annotations) to the estimated objects (as found by the object detector).</p>
+<p>The script requiers the classes 'detector.py' and 'evaluator.py' which are available below.</p>
 <p>Prerequisites:</p>
 <ul style="list-style-type:square;">
   <li>a trained tensorflow-lite object detector (tflite.detect and labelmap.txt)</li>

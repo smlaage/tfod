@@ -103,7 +103,9 @@ specified by the annotations) to the estimated objects (as found by the object d
   <li>blue = estimated object with matching true object</li>
   <li>red = estimated object without matching true object</li>
 </ul>
-![screenshot](evaluate_example_paramecium.png)
+<p align="center">
+  <img src="evaluate_example_paramecium.png" width="350" title="hover text">
+</p>
   
 <h2><b>detector.py</b></h2> 
 <p>Python class to run the tflite detector.</p>

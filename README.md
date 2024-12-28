@@ -66,6 +66,41 @@ and transfers the results to another folder (e.g. 'images'). If an imgae is alre
   <li>Path to the model folder as specified in ines 39 and 40. The model folder needs to comprise the trained tensorflow lite weights (detect.tflite) and the labels (label.txt).</li>
 </ul>
 
+<h2><b>evaluate_image.py</b></h2> 
+<p>This scripts evaluates the prediction for a single image. It compares the true objects (as
+specified by the annotations) to the estimated objects (as found by the object detector).</p>
+<p>Prerequisites:</p>
+<ul style="list-style-type:square;">
+  <li>a trained tensorflow-lite object detector (tflite.detect and labelmap.txt)</li>
+  <li>an image file (filetype .png or .jpg)</li>
+  <li>an annotation (label) file (filetype .xml)</li>
+</ul>
+<p>Image and label files must have the same name (but different endings, obviously)</p>
+<p>Output:</p>
+<p>(1) list of true objects:</p>
+<ul style="list-style-type:square;">
+    <li>running index of true object (starting at 0)</li>
+    <li>label of the true object</li>
+    <li>running index of estimated object (starting at 0)</li>
+    <li>label of the estimated object</li>
+    <li>score of the estimated object</li>
+    <li>factor or the overlap area (intersection)</li>
+    <li>match found, overlap > 50% (True or False)</li>
+</ul>
+<p>(2) list of estimated objects:</p>
+<ul style="list-style-type:square;">
+    <li>running index of the estimated object (starting at 0)</li>
+    <li>label of the estimated object</li>
+    <li>score of the estimated object</li>
+    <li>match found (True or False)</li>
+</ul>
+<p>The visualisation shows the true and estimated objects with coloured rectangles.</p>
+<ul style="list-style-type:square;">
+  <li>yellow = true object without matching estimated object</li>
+  <li>blue = estimated object with matching true object</li>
+  <li>red = estimated object without matching true object</li>
+</ul>
+  
 <h2><b>detector.py</b></h2> 
 <p>Python class to run the tflite detector.</p>
 

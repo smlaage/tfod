@@ -5,12 +5,13 @@ It compares the predicted objects (= estimated objects) with the labelled object
 It calculates the intersection area of predicted and labelled objects as a fraction of the estimated area.
 A match is determined if the area of an estimated object overlaps the area of the true object by at least 50%.
 
-The most important method of this class is evaluate_img().
+The most important method of this class is 'evaluate_img()'.
 This method requires an image file (jpg or png) and a labelling annotation (XML).
 It also needs a Tensorflow object detector, which is used to generate the predicted objects.
-The method returns two lists:
-List (1) contains the true objects and the matches with the predicted objects.
-List (2) contains the estimated objects with prediction scores and matches with the true objects.
+The method returns:
+    (1) List of true objects and the matches with the predicted objects.
+    (2) List of estimated objects with prediction scores and matches with the true objects.
+    (3) If visualization is on: key pressed, otherwise: 0
 
 SLW Dec-2024
 """
@@ -22,38 +23,14 @@ import detector
 class Evaluator:
     
     def __init__(self, model_path):
-        self._dct = detector.Detector(model_path)
+        self._dtc = detector.Detector(model_path, verbose=False)
         # Colors
         self._green = (0, 255, 0)     # true box with match
         self._yellow = (0, 255, 255)  # true box without match
         self._red = (0, 0, 255)       # estimated box with match
         self._blue = (255, 0, 0)      # estimated box without match
         
-        
-    def _show_box(self, img, box, label, color, thickness=2):
-        """ Adds a rectangle to an image.
-            - 'box' is a tuple of 4 float values specifiyign the position (ymin, xmin, ymax, xmax)
-            - 'label' is text that will be written on top of the rectangle.
-            - 'color' is a tuple of RGB values specifying the color of the box.
-            The function returns the modified image."""
-        height, width = img.shape[:2]
-        ymin = int(max(1,(box[0] * height)))
-        xmin = int(max(1,(box[1] * width)))
-        ymax = int(min(height,(box[2] * height)))
-        xmax = int(min(width,(box[3] * width)))  
-        cv2.rectangle(img, (xmin,ymin), (xmax,ymax), color, thickness)
-        if len(label) > 0:
-            label_str = label
-            label_size, base_line = cv2.getTextSize(label_str, cv2.FONT_HERSHEY_SIMPLEX, 0.5, 2) 
-            label_ymin = max(ymin, label_size[1] + 10) # Make sure not to draw label too close to top of window
-            cv2.rectangle(img, (xmin, label_ymin-label_size[1]-10),
-                               (xmin+label_size[0], label_ymin+base_line-10),
-                               (255, 255, 255), cv2.FILLED) 
-            # Draw label text
-            cv2.putText(img, label_str, (xmin, label_ymin-7), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 2) 
-        return img
-    
-    
+            
     def _extract_tag(self, s, tag):
         """ Extracts a single tag from an XML string """
         start_pos = s.find("<" + tag + ">")
@@ -134,7 +111,7 @@ class Evaluator:
         """ Evaluates an image based on a comparison of labeled (true) objects and estimated objects.
             It searches matches and calculates the intersection area as a fraction of the estimated box.
             If desired, the function plots an image including boxes.
-            The function returns two lists:
+            The function returns:
             (1) list of true objects:
             - index of true object
             - label of true object
@@ -148,6 +125,7 @@ class Evaluator:
             - label of the estimated object
             - score of the estimated object
             - match found (True or False)
+            (3) if visualization is on: key pressed, otherwise: 0
         """
 
         fname = "evaluate_img: "
@@ -166,7 +144,7 @@ class Evaluator:
         # Get estimations from detector and add estimated boxes to images
         true_lst = []
         img = cv2.imread(os.path.join(image_path, img_filename))
-        est_boxes, est_classes, est_scores = self._dct.detect_objects(img)   
+        est_boxes, est_classes, est_scores = self._dtc.detect_objects(img)   
         for idx in range(10):
             if est_scores[idx] < probability_threshold:
                 break
@@ -174,7 +152,7 @@ class Evaluator:
         est_classes = est_classes[:idx]
         est_scores = est_scores[:idx]
         est_matches = [False for ec in est_classes]
-        est_labels = [self._dct.labels[ec] for ec in est_classes]
+        est_labels = [self._dtc.labels[ec] for ec in est_classes]
         est_areas = [(b[2] - b[0]) * (b[3] - b[1]) for b in est_boxes]
         if verbose:
             print(fname + str(len(est_classes)) + " estimated objects found")
@@ -238,26 +216,27 @@ class Evaluator:
             print()
         
         # Show image
+        key = 0
         if show_img:
             # Add true boxes to images
             for idx, to in enumerate(true_lst):
                 if to[6]:
                     flag = "okay" if to[1] == to[3] else "wrong"
-                    img = self._show_box(img, true_boxes[idx], to[1] + " (" + flag + ")", self._green)
+                    img = self._dtc.add_box(img, true_boxes[idx], to[1] + " (" + flag + ")", self._green)
                 else:
-                    img = self._show_box(img, true_boxes[idx], to[1] + " (not found)", self._yellow)               
+                    img = self._dtc.add_box(img, true_boxes[idx], to[1] + " (not found)", self._yellow)               
             # Add estimatores to image
             for idx, eo in enumerate(est_lst):
                 if eo[3]:
-                    img = self._show_box(img, est_boxes[idx], "", self._blue)
+                    img = self._dtc.add_box(img, est_boxes[idx], "", self._blue)
                 else:
-                    img = self._show_box(img, est_boxes[idx], "", self._red)
+                    img = self._dtc.add_box(img, est_boxes[idx], "", self._red)
                     
             # Show the image and wait for the keyboard
             cv2.imshow("", img)
             key = cv2.waitKey(0) & 0xff
         
-        return true_lst, est_lst
+        return true_lst, est_lst, key
     
     
     def cleanup(self):
@@ -270,7 +249,6 @@ if __name__ == "__main__":
     
     print("Evaluate a single image")
     print(40 * "=")
-    print()
 
     # Directory and file definitions
     image = "Snap-846"
@@ -285,7 +263,7 @@ if __name__ == "__main__":
     
     # Evaluater
     evl = Evaluator(model_path)
-    true_lst, est_lst = evl.evaluate_img(image, image_path, verbose=False, show_img=True)
+    true_lst, est_lst, _ = evl.evaluate_img(image, image_path, verbose=False, show_img=True)
 
     # Show results
     print("True objects")
@@ -298,5 +276,3 @@ if __name__ == "__main__":
     # We are done
     evl.cleanup()
     print("Done!")
-
-

@@ -1,5 +1,8 @@
 """ analyze_images.py
 
+This script walks through a folder of images, runs the detector and displays the results including boxes.
+You can use the keyboard to move forwards of backwards, frame by frame or in larger steps.
+
 SLW Oct-2024
 """
 
@@ -7,36 +10,20 @@ import os
 import cv2
 import detector
 
-threshold = 0.3
+# Directories
+project_dir = "micro-organisms"
+image_dir = "images"
+model_dir = "model"
 
-def show_box(frame, box, label, score):
-    height, width = img.shape[:2]
-    ymin = int(max(1,(box[0] * height)))
-    xmin = int(max(1,(box[1] * width)))
-    ymax = int(min(image_height,(box[2] * height)))
-    xmax = int(min(image_width,(box[3] * width)))  
-    cv2.rectangle(frame, (xmin,ymin), (xmax,ymax), (10, 255, 0), 2)
-    label_str = "{:s}: {:d}%".format(label, int(score * 100))
-    label_size, base_line = cv2.getTextSize(label_str, cv2.FONT_HERSHEY_SIMPLEX, 0.7, 2) # Get font size
-    label_ymin = max(ymin, label_size[1] + 10) # Make sure not to draw label too close to top of window
-    cv2.rectangle(frame, (xmin, label_ymin-label_size[1]-10), (xmin+label_size[0], label_ymin+base_line-10), (255, 255, 255), cv2.FILLED) # Draw white box to put label text in
-    cv2.putText(frame, label_str, (xmin, label_ymin-7), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 0), 2) # Draw label text
-    return frame
-
-#===========================================================================================================
-
-# Instructions
+# Print instructions
 print("Analyze images ...")
 print("- Press 's' to move to the previous and 'd' to move to the next image.")
 print("- Press 'a' to move 10 images backwards and 'f' to move 10 images forward.")
 print("- Press <esc> to exit.")
 print()
 
-# Directories
-project_dir = "."
-image_dir = "images"
+# Paths 
 image_path = os.path.join(project_dir, image_dir)
-model_dir = "model"
 model_path = os.path.join(project_dir, model_dir)
 
 # Constants
@@ -46,7 +33,7 @@ image_step = 10
 
 # Detector
 print("Starting detector ...")
-dct = detector.Detector(model_path)
+dtc = detector.Detector(model_path)
 
 # Image directory
 print("Reading image directory ...")
@@ -71,19 +58,19 @@ while True:
         img = cv2.resize(img, (width * image_height // height, image_height))
         print("   - image resized")
     # Find objects
-    boxes, classes, scores = dct.detect_objects(img)
-    #cv2.imshow("", img)
+    boxes, classes, scores = dtc.detect_objects(img)
+    # Add boxes
     for i in range(10):
         if scores[i] > threshold:
-            print("   - Class:", dct.labels[classes[i]], 
-                  "  Score:", round(scores[i] * 100), "%")
-            img = show_box(img, boxes[i], dct.labels[classes[i]], scores[i])
+            img = dtc.add_box(img, boxes[i],
+                              dtc.labels[classes[i]] + ": " + str(round(scores[i]*100)) + '%')
         else:
             break
-    # Show the image and wait for the keyboard
+    # Show the image and wait for a key pressed
     cv2.imshow("", img)
     key = cv2.waitKey(0) & 0xff
-    # Analyze keys pressed 
+    
+    # Analyze keys pressed and move to the next image(s)
     if chr(key) in ('a', 'A'):
         pnt -= image_step;
         if pnt < 0:

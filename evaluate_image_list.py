@@ -108,5 +108,10 @@ for file_list in image_file_lists:
         c, true_cnt, matches, matches*100/true_cnt, correct, correct*100/true_cnt, 
         localization*100/matches, est_cnt, matchless, matchless*100/est_cnt))
     print()
+
+    print("Test images with the highest number of errors:")
+    true_results_nomatch = true_results[true_results['match'] == False]
+    print(true_results_nomatch['image'].value_counts().head(10))
+    print()
     
 print("Done!")

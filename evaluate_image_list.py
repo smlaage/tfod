@@ -1,6 +1,5 @@
 """ evaluate_image_list.py
 
-
 SLW Oct-2024
 """
 
@@ -9,12 +8,12 @@ import pandas as pd
 import evaluator
 
 # Set files and paths
-project_dir = "micro-organisms"
+project_dir = "."
 image_dir = "images"
 image_file_lists = ["train_images.txt", "test_images.txt"]
 model_dir = "model"
 
-print("Evaluate images")
+print("Evaluate image lists")
 print(40 * "=")
 print()
 
@@ -87,9 +86,14 @@ for file_list in image_file_lists:
     print("All classes " + 62 * '-')
     title_str = "True Obj     Matches  Correct Matches  Localization  Est.Obj  Not Matching"
     print(title_str)
-    print("   {:5d}{:5d}/{:5.1f}%     {:5d}/{:5.1f}%        {:5.1f}%    {:5d}  {:5d}/{:5.1f}%".format(
-        true_cnt, matches, matches*100/true_cnt, correct, correct*100/true_cnt, 
-        localization*100/matches, est_cnt, matchless, matchless*100/est_cnt))
+    if true_cnt > 0 and matches > 0 and est_cnt > 0:
+        print("   {:5d}{:5d}/{:5.1f}%     {:5d}/{:5.1f}%        {:5.1f}%    {:5d}  {:5d}/{:5.1f}%".format(
+            true_cnt, matches, matches*100/true_cnt, correct, correct*100/true_cnt, 
+            localization*100/matches, est_cnt, matchless, matchless*100/est_cnt))
+    else:
+        print("   {:5d}           -                -             -    {:5d}             -".format(
+            true_cnt, est_cnt))
+            
     print()
 
     print("By class " + 85 * '-')
@@ -104,14 +108,21 @@ for file_list in image_file_lists:
         est_results_byclass = est_results[est_results['est_label'] == c]
         est_cnt = len(est_results_byclass)
         matchless = est_results_byclass[est_results_byclass['match'] == False]['est_idx'].count()
-        print("{:20s}   {:5d}{:5d}/{:5.1f}%     {:5d}/{:5.1f}%        {:5.1f}%    {:5d}  {:5d}/{:5.1f}%".format(
-        c, true_cnt, matches, matches*100/true_cnt, correct, correct*100/true_cnt, 
-        localization*100/matches, est_cnt, matchless, matchless*100/est_cnt))
-    print()
+        if true_cnt > 0 and matches > 0 and est_cnt > 0:
+            print("{:20s}   {:5d}{:5d}/{:5.1f}%     {:5d}/{:5.1f}%        {:5.1f}%    {:5d}  {:5d}/{:5.1f}%".format(
+                c, true_cnt, matches, matches*100/true_cnt, correct, correct*100/true_cnt, 
+                localization*100/matches, est_cnt, matchless, matchless*100/est_cnt))
+        else:
+            print("{:20s}   {:5d}           -                -             -    {:5d}             -".format(
+                c, true_cnt, est_cnt))
 
-    print("Test images with the highest number of errors:")
-    true_results_nomatch = true_results[true_results['match'] == False]
-    print(true_results_nomatch['image'].value_counts().head(10))
+            
     print()
+    
+print(40 * '-')    
+print("Test images with the highest number of errors:")
+true_results_nomatch = true_results[true_results['match'] == False]
+print(true_results_nomatch['image'].value_counts().head(10))
+print()
     
 print("Done!")

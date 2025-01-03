@@ -134,7 +134,7 @@ class Evaluator:
         img_filename, true_classes, true_boxes = self._decode_xml(filename + '.XML', image_path)
         if img_filename == "none":
             print(fname + "Error: files not found: " + filename)
-            return [], []
+            return [], [], 0
 
         # Loading the image file
         if verbose:

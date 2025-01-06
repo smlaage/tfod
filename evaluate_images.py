@@ -36,9 +36,8 @@ SLW Dec-2024
 import os
 import evaluator
 
-
 # Directories
-project_dir = "micro-organisms"
+project_dir = "."
 image_dir = "images"
 model_dir = "model"
 

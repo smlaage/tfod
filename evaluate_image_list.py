@@ -1,6 +1,6 @@
 """ evaluate_image_list.py
 
-SLW Oct-2024
+SLW Oct-2024 - Dec-2024
 """
 
 import os
@@ -8,7 +8,7 @@ import pandas as pd
 import evaluator
 
 # Set files and paths
-project_dir = "."
+project_dir = "micro-organisms"
 image_dir = "images"
 image_file_lists = ["train_images.txt", "test_images.txt"]
 model_dir = "model"
@@ -47,14 +47,13 @@ for file_list in image_file_lists:
     for image_file in img_lst:
         image_file = image_file.strip('\n')
         pos = image_file.rfind('/')
-        if pos < 0:
-            pos = 0
-        image_file = image_file[pos:]
+        if pos > 0:
+            image_file = image_file[pos + 1 :]
         pos = image_file.rfind('.')
         if pos < 0:
             print("Error: can't identify file type on '" + image_file + "'. File skipped.")
             continue
-        image_name = image_file[1 : pos]
+        image_name = image_file[: pos]
         image_filetype = image_file[pos+1 : ]
         if image_filetype.casefold() == "xml".casefold():
             print("- " + image_name + 20 * ' ', end='\r')
@@ -126,3 +125,4 @@ print(true_results_nomatch['image'].value_counts().head(10))
 print()
     
 print("Done!")
+

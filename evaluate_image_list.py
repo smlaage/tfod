@@ -121,7 +121,10 @@ for file_list in image_file_lists:
 print(40 * '-')    
 print("Test images with the highest number of errors:")
 true_results_nomatch = true_results[true_results['match'] == False]
-print(true_results_nomatch['image'].value_counts().head(10))
+if len(true_results_nomatch) == 0:
+    print("None!")
+else:
+    print(true_results_nomatch['image'].value_counts().head(10))
 print()
     
 print("Done!")

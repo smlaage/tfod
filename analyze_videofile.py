@@ -18,7 +18,7 @@ import sys
 # Directories
 video_file = "<my_video_file.mp4>"
 project_dir = "<my_project>"
-video_dir = "videos"
+video_dir = "<my_video_folder>"
 model_dir = "model"
 
 # Print instructions

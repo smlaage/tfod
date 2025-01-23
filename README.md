@@ -63,8 +63,21 @@ and transfers the results to another folder (e.g. 'images'). If an imgae is alre
   <p>The script requiers the class 'detector.py' which is available below.</p>
 <p>You need to provide the following folders:</p>
 <ul style="list-style-type:square;">
-  <li>Path to image folder as specified in lines 36 to 38.</li>
-  <li>Path to the model folder as specified in ines 39 and 40. The model folder needs to comprise the trained tensorflow lite weights (detect.tflite) and the labels (label.txt).</li>
+  <li>Path to image folder as specified at lines 36 to 38.</li>
+  <li>Path to the model folder as specified at ines 39 and 40. The model folder needs to comprise the trained tensorflow lite weights (detect.tflite) and the labels (label.txt).</li>
+</ul>
+
+<h2><b>analyze_videofile.py</b></h2> 
+<p>This script applies the detector to a videostream generated from a video file.
+The results are dispalyed with bounding boxes, labels, and scores.
+You can use the keyboard keys <esc>, <return> or <q> to cancel the presentation.</q>
+<p>The script requiers the class 'detector.py' which is available below.</p>
+<p>You need to provide the following files and folders:</p>
+<ul style="list-style-type:square;">
+  <li>Name of the video file at line 19.</li>
+  <li>Name of a project dir (or '.') at line 20.</li>
+  <li>Path to the folder where the video file is stored at line 21.</li>
+  <li>Path to the model folder at line 22. The model folder needs to comprise the trained tensorflow lite weights (detect.tflite) and the labels (label.txt).</li>
 </ul>
 
 <h2><b>evaluate_image.py</b></h2> 
@@ -73,9 +86,9 @@ specified by the annotations) to the estimated objects (as found by the object d
 <p>The script requiers the classes 'detector.py' and 'evaluator.py' which are available below.</p>
 <p>Prerequisites:</p>
 <ul style="list-style-type:square;">
-  <li>a trained tensorflow-lite object detector (tflite.detect and labelmap.txt)</li>
-  <li>an image file (filetype .png or .jpg)</li>
-  <li>an annotation (label) file (filetype .xml)</li>
+  <li>A trained tensorflow-lite object detector (tflite.detect and labelmap.txt)</li>
+  <li>An image file (filetype .png or .jpg)</li>
+  <li>An annotation (label) file (filetype .xml)</li>
 </ul>
 <p>Image and label files must have the same name (but different endings, obviously)</p>
 <p>Output:</p>

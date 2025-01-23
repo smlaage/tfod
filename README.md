@@ -6,6 +6,7 @@
   <li><b>resize_images.py</b> - resizes images to the prefered size (e.g.1024x768) prior to model training</li>
   <li><b>prefix_files.py</b> - renames all files in an image with a given prefix (usually the name of the class of an image)</li>
   <li><b>analyze_images.py</b> - runs the tflite detector on all images in a given directory and shows the objects found</li>
+  <li><b>analyze_videofile.py</b> - runs the tflite detector on a video stream as generated from a video file (e.g. *.mp4), and shows the objects found</li>
   <li><b>evaluate_image.py</b> - evaluates the prediction for a single image. It compares the true objects (as specified by the annotations) to the estimated objects (as found by the object detector).</li>
   <li><b>detector.py</b> - this is a python class providing easy access to the tensorflow lite detector</li>
   <li><b>evaluator.py</b> - this is a python class to evaluate the performance of a TensorFlow object detection algorithm.</li>

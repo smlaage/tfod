@@ -45,8 +45,10 @@ print("Starting detector ...")
 dtc = detector.Detector(model_path)
 
 # Opening video stream
-print("Opening video file ...")
-# cam = cv2.VideoCapture(1)
+if not os.path.isfile(os.path.join(project_dir, video_dir, video_file)):
+    print("Error: can't find video file: '" + os.path.join(project_dir, video_dir, video_file) + "' !")
+    sys.exit(1)
+
 video_stream = cv2.VideoCapture(os.path.join(project_dir, video_dir, video_file))
 if (video_stream.isOpened() == False):
     print("Error: could not open the video file:", video_file)

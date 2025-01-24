@@ -28,7 +28,13 @@ print()
 
 # Paths 
 video_path = os.path.join(project_dir, video_dir)
+if not os.path.isdir(video_path):
+    print("Error: can't find video path: '" + video_path + "' !")
+    sys.exit(1)
 model_path = os.path.join(project_dir, model_dir)
+if not os.path.isdir(model_path):
+    print("Error: can't find model path: '" + model_path + "' !")
+    sys.exit(1)
 
 # Constants
 threshold = 0.75  #  Detector threshold

@@ -58,7 +58,7 @@ print("Using video file:", video_file)
 frame_ps = int(video_stream.get(5))
 print("Frame rate:", frame_ps, "frames per sec")
 frame_cnt = video_stream.get(7)
-print("Frame count:", frame_cnt)
+print("Frame count:", int(frame_cnt))
 print("Frame size:", int(video_stream.get(3)), '*', int(video_stream.get(4)))
 print()
 
